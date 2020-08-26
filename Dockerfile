@@ -1,10 +1,16 @@
-FROM node:alpine
+FROM node:13.12.0-alpine
 
-WORKDIR /usr/scr/app
+# set working directory
+WORKDIR /app
 
-COPY package.json .
-RUN install npm
+# install app dependencies
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm install --silent
+RUN npm install react-scripts@3.4.1 -g --silent
 
-COPY . .
-EXPOSE 5000
-CMD ["npm","start"]
+# add app
+COPY . ./
+
+# start app
+CMD ["npm", "start"]
