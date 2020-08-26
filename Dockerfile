@@ -2,7 +2,7 @@ FROM node:alpine
 
 WORKDIR /usr/scr/app
 
-COPY package.json
+COPY package.json .
 RUN install npm
 
 COPY . .
